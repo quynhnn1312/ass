@@ -39,8 +39,9 @@ function ProductList(props) {
     >
       <thead>
         <tr>
+          <th>STT</th>
           <th>ID</th>
-          <th>Information</th>
+          <th width="35%">Information</th>
           <th>Category</th>
           <th>Image</th>
           <th>Price</th>
@@ -51,6 +52,7 @@ function ProductList(props) {
       <tbody>
         {products.map((product, index) => (
           <tr key={index}>
+            <td>{index+1}</td>
             <td>{product.id}</td>
             <td className="text-left">
               <li>
@@ -83,7 +85,7 @@ function ProductList(props) {
             </td>
             <td>
               <del>{product.price} $</del>
-              <p>{((100 - product.discount) / 100) * product.price} $</p>
+              <p>{Math.ceil(((100 - product.discount) / 100) * product.price)} $</p>
             </td>
             <td>
               <span

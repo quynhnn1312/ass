@@ -7,7 +7,7 @@ import Breadcrumb from "../../../../components/Main/Breadcrumb";
 function About(props) {
   return (
     <div className="about-page">
-      <Breadcrumb />
+      <Breadcrumb title="About" />
       <main id="content" className="main-content-wrapper page-about">
         {/* Start of About US Section */}
         <section className="about-section">

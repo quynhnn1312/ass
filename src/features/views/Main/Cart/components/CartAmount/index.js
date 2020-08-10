@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function CartAmount(props) {
+function CartAmount({totalCart}) {
   return (
     <div className="cart-amount-wrapper">
     <div className="row">
@@ -12,7 +12,7 @@ function CartAmount(props) {
               <td>
                 <strong>Sub-Total:</strong>
               </td>
-              <td>$860.00</td>
+              <td>${totalCart}</td>
             </tr>
             <tr>
               <td>
@@ -20,7 +20,7 @@ function CartAmount(props) {
               </td>
               <td>
                 <span className="color-primary">
-                  $860.00
+                  ${totalCart}
                 </span>
               </td>
             </tr>
@@ -34,7 +34,11 @@ function CartAmount(props) {
 }
 
 CartAmount.propTypes = {
+  totalCart: PropTypes.number,
+}
 
+CartAmount.defaultProps = {
+  totalCart: 0,
 }
 
 export default CartAmount

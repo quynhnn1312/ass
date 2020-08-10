@@ -9,14 +9,14 @@ import {
   apiProductList,
   selectProduct,
   apiDeleteProduct,
-} from "../../productSlice";
+} from "../../../../../../createSlices/productSlice";
 import Pagination from "react-js-pagination";
 import ShowPerPage from "../../components/ShowPerPage";
 import ProductSearch from "../../components/ProductSearch";
 import {
   apiCategoryList,
   selectCategory,
-} from "../../../Category/categorySlice";
+} from "../../../../../../createSlices/categorySlice";
 
 function Main(props) {
   const [activePage, setActivePage] = useState(1);
@@ -31,11 +31,7 @@ function Main(props) {
     dispatch(apiCategoryList());
   }, []);
   const onProductRemoveClick = (product) => {
-    const dataRemove = {
-      cateId: product.categoryId,
-      proId: product.id,
-    };
-    dispatch(apiDeleteProduct(dataRemove));
+    dispatch(apiDeleteProduct(product.id));
     Swal.fire({
       icon: "success",
       title: "Đã xóa",
@@ -44,7 +40,7 @@ function Main(props) {
     });
   };
   const onProductUpdateClick = (product) => {
-    const editProductUrl = `/products/${product.id}`;
+    const editProductUrl = `products/${product.id}`;
     history.push(editProductUrl);
   };
   const handlePageChange = (pageNumber) => {

@@ -9,7 +9,7 @@ import {
   apiCategoryList,
   selectCategory,
   apiDeleteCategory,
-} from "../../categorySlice";
+} from "../../../../../../createSlices/categorySlice";
 import Pagination from "react-js-pagination";
 import ShowPerPage from "../../components/ShowPerPage";
 import CategorySearch from "../../components/CategorySearch";
@@ -34,7 +34,7 @@ function Main(props) {
     });
   };
   const onCategoryUpdateClick = (category) => {
-    const editCategoryUrl = `/categories/${category.id}`;
+    const editCategoryUrl = `categories/${category.id}`;
     history.push(editCategoryUrl);
   };
   const handlePageChange = (pageNumber) => {

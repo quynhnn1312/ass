@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import categoryApi from "../../../../api/categoryApi";
+import categoryApi from "../api/categoryApi";
 
 export const apiCategoryList = createAsyncThunk(
   "categories/fetchCategoryStatus",
@@ -9,6 +9,17 @@ export const apiCategoryList = createAsyncThunk(
       return responseCategoryList;
     } catch (error) {
       console.log("Failed to fetch category list: ", error);
+    }
+  }
+);
+export const apiCategoryFindId = createAsyncThunk(
+  "categories/fetchCategoryFindIdStatus",
+  async (id) => {
+    try {
+      const responseCategoryFindId = await categoryApi.get(id);
+      return responseCategoryFindId;
+    } catch (error) {
+      console.log("Failed to fetch category find id by list: ", error);
     }
   }
 );
@@ -41,8 +52,9 @@ export const apiDeleteCategory = createAsyncThunk(
   "categories/fetchDeleteCategoryStatus",
   async (id) => {
     try {
-      const responseDeleteCategory = await categoryApi.delete(id);
-      return responseDeleteCategory;
+      const responseCategoryFindId = await categoryApi.get(id);
+      await categoryApi.delete(id);
+      return responseCategoryFindId;
     } catch (error) {
       console.log("Failed to fetch category list: ", error);
     }
@@ -54,6 +66,9 @@ const category = createSlice({
   reducers: {},
   extraReducers: {
     [apiCategoryList.fulfilled]: (state, action) => {
+      return action.payload;
+    },
+    [apiCategoryFindId.fulfilled]: (state, action) => {
       return action.payload;
     },
     [apiAddCategory.fulfilled]: (state, action) => {

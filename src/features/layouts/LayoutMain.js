@@ -8,6 +8,7 @@ import "../../assets/main/css/pe-icon-7-stroke.css";
 import "../../assets/main/css/plugins.css";
 import "../../assets/main/css/style.scss";
 import "../../assets/main/css/responsive.css";
+import "../../assets/main/css/thankyou.scss";
 import Header from "../../components/Main/Header";
 import Footer from "../../components/Main/Footer";
 import ButtonScroll from "../../components/Main/ButtonScroll";

@@ -8,7 +8,7 @@ import {
   apiAddCategory,
   selectCategory,
   apiCategoryList,
-} from "../../categorySlice";
+} from "../../../../../../createSlices/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function AddEdit(props) {
@@ -25,7 +25,7 @@ function AddEdit(props) {
       dispatch(apiUpdateCategory(value));
     }
     setTimeout(() => {
-      history.push("/categories");
+      history.push("/admin/categories");
     }, 1000);
   };
   useEffect(() => {

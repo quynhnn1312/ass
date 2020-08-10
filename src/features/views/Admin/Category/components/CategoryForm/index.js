@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategory, apiCategoryList } from "../../categorySlice";
+import { selectCategory, apiCategoryList } from "../../../../../../createSlices/categorySlice";
 
 CategoryForm.propTypes = {
   onHandleSubmit: PropTypes.func,
@@ -57,13 +57,13 @@ function CategoryForm(props) {
               />
               {errors.name && errors.name.type === "required" && (
                 <p className="error-form">
-                  <i className="fas fa-exclamation-triangle"></i>&nbsp; Name is
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp; Name is
                   required
                 </p>
               )}
               {errors.name && errors.name.type === "validate" && (
                 <p className="error-form">
-                  <i className="fas fa-exclamation-triangle"></i>&nbsp;
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp;
                   Duplicate category name
                 </p>
               )}

@@ -2,7 +2,12 @@ import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProduct, apiProductList } from "../../productSlice";
+import {
+  selectProduct,
+  apiProductList,
+} from "../../../../../../createSlices/productSlice";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 ProductForm.propTypes = {
   onHandleSubmit: PropTypes.func,
@@ -21,17 +26,28 @@ function ProductForm(props) {
   const products = useSelector(selectProduct);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [value, setValue] = useState();
+  const [detail, setDetail] = useState("");
+  const [imageUrl, setImageUrl] = useState({ image: null, url: "" });
   const { onHandleSubmit, categories, isAddMode, initialValuesEdit } = props;
   const { register, handleSubmit, errors } = useForm();
   useEffect(() => {
     dispatch(apiProductList());
+    register({ name: "detail" });
   }, []);
+
   const loadImage = (e) => {
     let output = document.getElementById("output");
     output.src = e.target.value;
   };
 
+  const handleChangeImage = (e) => {
+    if(e.target.files[0]) {
+      console.log(e.target.files[0])
+    }
+  }
+
   const onSubmit = (data) => {
+    data.detail = detail;
     setIsSubmitting(true);
     if (!onHandleSubmit) return;
     onHandleSubmit(data);
@@ -50,12 +66,7 @@ function ProductForm(props) {
     if (checkName.length > 0) return false;
     return true;
   };
-  const isCheckImage = (avatar) => {
-    if (/\.(gif|jpe?g|tiff|png|webp|bmp)$/i.test(avatar)) {
-      return true;
-    }
-    return false;
-  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card-body">
@@ -81,8 +92,8 @@ function ProductForm(props) {
               )}
               {errors.name && errors.name.type === "validate" && (
                 <p className="error-form">
-                  <i className="fa fa-exclamation-triangle"></i>&nbsp;
-                  Duplicate product name
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp; Duplicate
+                  product name
                 </p>
               )}
             </div>
@@ -93,6 +104,7 @@ function ProductForm(props) {
                 className={
                   errors.price ? "form-control is-invalid" : "form-control"
                 }
+                step="0.001"
                 name="price"
                 placeholder="Enter price ..."
                 ref={register({ required: true, min: 1 })}
@@ -153,8 +165,8 @@ function ProductForm(props) {
               />
               {errors.amount && errors.amount.type === "required" && (
                 <p className="error-form">
-                  <i className="fa fa-exclamation-triangle"></i>&nbsp; Amount
-                  is required
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp; Amount is
+                  required
                 </p>
               )}
               {errors.amount && errors.amount.type === "min" && (
@@ -165,27 +177,23 @@ function ProductForm(props) {
               )}
             </div>
             <div className="form-group">
-              <label htmlFor="short_des">Short description:</label>
-              <textarea
-                className="form-control"
-                rows={2}
-                defaultValue={""}
-                name="short_description"
-                placeholder="Enter short description ..."
-                ref={register}
-                defaultValue={initialValuesEdit.short_description}
-              />
-            </div>
-            <div className="form-group">
               <label htmlFor="detail">Detail:</label>
-              <textarea
-                className="form-control"
-                rows={5}
-                defaultValue={""}
-                name="detail"
-                placeholder="Enter detail ..."
-                ref={register}
-                defaultValue={initialValuesEdit.detail}
+              <CKEditor
+                data=""
+                editor={ClassicEditor}
+                onInit={(editor) => {
+                  editor.editing.view.change((writer) => {
+                    writer.setStyle(
+                      "height",
+                      "200px",
+                      editor.editing.view.document.getRoot()
+                    );
+                  });
+                }}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setDetail(data);
+                }}
               />
             </div>
           </div>
@@ -207,16 +215,14 @@ function ProductForm(props) {
             <div className="form-group">
               <label htmlFor="image">Image:</label>
               <input
-                type="text"
+                type="file"
                 className={
                   errors.avatar ? "form-control is-invalid" : "form-control"
                 }
                 name="avatar"
-                placeholder="Enter image ..."
                 id="input"
-                onChange={loadImage}
-                ref={register({ required: true, validate: isCheckImage })}
-                defaultValue={initialValuesEdit.avatar}
+                onChange={handleChangeImage}
+                ref={register({ required: true})}
               />
               {errors.avatar && errors.avatar.type === "required" && (
                 <p className="error-form">
@@ -226,8 +232,8 @@ function ProductForm(props) {
               )}
               {errors.avatar && errors.avatar.type === "validate" && (
                 <p className="error-form">
-                  <i className="fa fa-exclamation-triangle"></i>&nbsp; The
-                  image path is malformed
+                  <i className="fa fa-exclamation-triangle"></i>&nbsp; The image
+                  path is malformed
                 </p>
               )}
             </div>
@@ -242,7 +248,6 @@ function ProductForm(props) {
                 value={value ? value.categoryId : initialValuesEdit.categoryId}
                 onChange={handleOnChange}
               >
-                <option value="">----- Category product -----</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
@@ -255,6 +260,18 @@ function ProductForm(props) {
                   is required
                 </p>
               )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="short_des">Short description:</label>
+              <textarea
+                className="form-control"
+                rows={2}
+                defaultValue={""}
+                name="short_description"
+                placeholder="Enter short description ..."
+                ref={register}
+                defaultValue={initialValuesEdit.short_description}
+              />
             </div>
             <div className="form-group">
               <div className="form-check">

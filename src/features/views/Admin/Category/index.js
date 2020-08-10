@@ -5,7 +5,7 @@ import NotFound from "./../../../../components/Admin/NotFound";
 import AddEdit from "./pages/AddEdit";
 import Main from "./pages/Main";
 
-function Category(props) {
+function Category() {
   const match = useRouteMatch();
   return (
     <Switch>

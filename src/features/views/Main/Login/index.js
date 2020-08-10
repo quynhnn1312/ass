@@ -6,7 +6,7 @@ import Breadcrumb from "../../../../components/Main/Breadcrumb";
 function Login(props) {
   return (
     <div className="login-page">
-      <Breadcrumb />
+      <Breadcrumb title="Login"  />
       <div id="content" className="main-content-wrapper">
         {/* Start of Login Wrapper */}
         <div className="login-wrapper">

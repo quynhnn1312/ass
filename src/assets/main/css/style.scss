@@ -7290,4 +7290,18 @@ header.header-type-4 .header-text span:first-child {
 .header__link--active{
     color: #cc2121 !important;
 }
+.pagination-area .pagination .page-item.active .page-link{
+    color: #cc2121 !important;
+    font-size: 20px;
+    cursor: default;
+    line-height: 14px;
+    font-weight: 500;
+}
+.pagination-area .pagination li:first-child.disabled .page-link,
+.pagination-area .pagination li:last-child.disabled .page-link{
+    color: #a9a9a9;
+}
+.list-categories-widget button::after{
+    display: none;
+}
 }

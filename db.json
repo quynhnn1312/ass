@@ -1,0 +1,276 @@
+{
+  "categories": [
+    {
+      "name": "Uncategory",
+      "status": true,
+      "id": "1"
+    },
+    {
+      "name": "Hayes, Auer and Bailey",
+      "status": true,
+      "id": "3"
+    },
+    {
+      "name": "sản phẩm nam",
+      "status": true,
+      "id": "ur_GrpZ"
+    }
+  ],
+  "products": [
+    {
+      "name": "Handmade Rubber Mouse",
+      "price": "327.00",
+      "discount": "97",
+      "amount": "18",
+      "short_description": "short_description 9",
+      "detail": "detail 9",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hai_ninh_nguyen/128.jpg",
+      "categoryId": "ur_GrpZ",
+      "status": true,
+      "id": "9"
+    },
+    {
+      "id": "14",
+      "categoryId": "3",
+      "name": "Licensed Rubber Table",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stevedesigner/128.jpg",
+      "price": "216.00",
+      "discount": 66,
+      "amount": 17,
+      "short_description": "short_description 14",
+      "detail": "detail 14",
+      "status": false
+    },
+    {
+      "id": "19",
+      "categoryId": "3",
+      "name": "Handcrafted Metal Mouse",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/santi_urso/128.jpg",
+      "price": "916.00",
+      "discount": 36,
+      "amount": 34,
+      "short_description": "short_description 19",
+      "detail": "detail 19",
+      "status": false
+    },
+    {
+      "id": "24",
+      "categoryId": "3",
+      "name": "Refined Granite Soap",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stefooo/128.jpg",
+      "price": "193.00",
+      "discount": 56,
+      "amount": 1,
+      "short_description": "short_description 24",
+      "detail": "detail 24",
+      "status": false
+    },
+    {
+      "id": "29",
+      "categoryId": "3",
+      "name": "Generic Rubber Pants",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/robinlayfield/128.jpg",
+      "price": "372.00",
+      "discount": 26,
+      "amount": 89,
+      "short_description": "short_description 29",
+      "detail": "detail 29",
+      "status": false
+    },
+    {
+      "name": "Tasty Concrete Gloves",
+      "price": "37.00",
+      "discount": "85",
+      "amount": "10",
+      "short_description": "short_description 11",
+      "detail": "detail 11",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/liminha/128.jpg",
+      "categoryId": "3",
+      "status": false,
+      "id": "11"
+    },
+    {
+      "name": "Tasty Soft Mouse",
+      "price": "649.00",
+      "discount": "89",
+      "amount": "85",
+      "short_description": "short_description 16",
+      "detail": "detail 16",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/evandrix/128.jpg",
+      "categoryId": "3",
+      "status": true,
+      "id": "16"
+    },
+    {
+      "name": "Gorgeous Rubber Bike",
+      "price": "715.00",
+      "discount": "90",
+      "amount": "21",
+      "short_description": "short_description 21",
+      "detail": "detail 21",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ryandownie/128.jpg",
+      "categoryId": "3",
+      "status": true,
+      "id": "21"
+    },
+    {
+      "name": "Tasty Rubber Keyboard",
+      "price": "586.00",
+      "discount": "82",
+      "amount": "71",
+      "short_description": "short_description 26",
+      "detail": "detail 26",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/depaulawagner/128.jpg",
+      "categoryId": "3",
+      "status": true,
+      "id": "26"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "1",
+      "title": "When an unknown printer took a galley of type.",
+      "avatar": "https://www.chhajedgarden.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/o/rose001.jpg",
+      "short_description": "Distinctively simplify dynamic resources whereas prospective core competencies. Objectively pursue multidisciplinary human capital for ",
+      "detail": "Distinctively simplify dynamic resources whereas prospective core competencies. Objectively pursue multidisciplinary human capital for ",
+      "created_at": "2020-08-06 05:41:41",
+      "status": true
+    }
+  ],
+  "transactions": [
+    {
+      "name": "quynh quynh",
+      "email": "quynhnnph09019@fpt.edu.vn",
+      "address": "TẦNG 6, TOÀ NHÀ CORNERSTONE, 16 PHAN CHU TRINH, QUẬN HOÀN KIẾM, HÀ NỘI",
+      "phone": "98123676",
+      "note": "s.d v",
+      "created_at": "2020-08-06 05:41:54",
+      "updated_at": "2020-08-06 05:41:54",
+      "total": 253.92,
+      "status": 2,
+      "id": 1
+    },
+    {
+      "name": "sdklvnals",
+      "email": "admin@gmail.com",
+      "address": "TẦNG 6, TOÀ NHÀ CORNERSTONE, 16 PHAN CHU TRINH, QUẬN HOÀN KIẾM, HÀ NỘI",
+      "phone": "98123676",
+      "note": "sdlkvn",
+      "created_at": "2020-08-06 06:28:41",
+      "updated_at": "2020-08-06 06:28:41",
+      "total": 1029.69,
+      "status": 0,
+      "id": 2
+    }
+  ],
+  "orders": [
+    {
+      "transactionId": 1,
+      "productId": "11",
+      "quantity": 1,
+      "price": "37.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/liminha/128.jpg",
+      "name": "Tasty Concrete Gloves",
+      "discount": 85,
+      "created_at": "2020-08-06 05:41:41",
+      "updated_at": "2020-08-06 05:41:41",
+      "id": 1
+    },
+    {
+      "transactionId": 1,
+      "productId": "21",
+      "quantity": 1,
+      "price": "715.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/ryandownie/128.jpg",
+      "name": "Gorgeous Rubber Bike",
+      "discount": 90,
+      "created_at": "2020-08-06 05:41:41",
+      "updated_at": "2020-08-06 05:41:41",
+      "id": 2
+    },
+    {
+      "transactionId": 1,
+      "productId": "16",
+      "quantity": 1,
+      "price": "649.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/evandrix/128.jpg",
+      "name": "Tasty Soft Mouse",
+      "discount": 89,
+      "created_at": "2020-08-06 05:41:41",
+      "updated_at": "2020-08-06 05:41:41",
+      "id": 3
+    },
+    {
+      "transactionId": 1,
+      "productId": "26",
+      "quantity": 1,
+      "price": "586.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/depaulawagner/128.jpg",
+      "name": "Tasty Rubber Keyboard",
+      "discount": 82,
+      "created_at": "2020-08-06 05:41:41",
+      "updated_at": "2020-08-06 05:41:41",
+      "id": 4
+    },
+    {
+      "transactionId": 2,
+      "productId": "24",
+      "quantity": 1,
+      "price": "193.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/stefooo/128.jpg",
+      "name": "Refined Granite Soap",
+      "discount": 56,
+      "created_at": "2020-08-06 06:17:47",
+      "updated_at": "2020-08-06 06:17:47",
+      "id": 5
+    },
+    {
+      "transactionId": 2,
+      "productId": "9",
+      "quantity": 1,
+      "price": "327.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/hai_ninh_nguyen/128.jpg",
+      "name": "Handmade Rubber Mouse",
+      "discount": 97,
+      "created_at": "2020-08-06 06:17:47",
+      "updated_at": "2020-08-06 06:17:47",
+      "id": 6
+    },
+    {
+      "transactionId": 2,
+      "productId": "14",
+      "quantity": 1,
+      "price": "216.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/stevedesigner/128.jpg",
+      "name": "Licensed Rubber Table",
+      "discount": 66,
+      "created_at": "2020-08-06 06:17:47",
+      "updated_at": "2020-08-06 06:17:47",
+      "id": 7
+    },
+    {
+      "transactionId": 2,
+      "productId": "19",
+      "quantity": 1,
+      "price": "916.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/santi_urso/128.jpg",
+      "name": "Handcrafted Metal Mouse",
+      "discount": 36,
+      "created_at": "2020-08-06 06:17:47",
+      "updated_at": "2020-08-06 06:17:47",
+      "id": 8
+    },
+    {
+      "transactionId": 2,
+      "productId": "29",
+      "quantity": 1,
+      "price": "372.00",
+      "image": "https://s3.amazonaws.com/uifaces/faces/twitter/robinlayfield/128.jpg",
+      "name": "Generic Rubber Pants",
+      "discount": 26,
+      "created_at": "2020-08-06 06:17:47",
+      "updated_at": "2020-08-06 06:17:47",
+      "id": 9
+    }
+  ]
+}

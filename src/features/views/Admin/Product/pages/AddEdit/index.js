@@ -5,14 +5,14 @@ import { useHistory, useParams } from "react-router-dom";
 import {
   apiCategoryList,
   selectCategory,
-} from "../../../Category/categorySlice";
+} from "../../../../../../createSlices/categorySlice";
 import ProductForm from "../../components/ProductForm";
 import {
   apiAddProduct,
   apiProductList,
   apiUpdateProduct,
   selectProduct,
-} from "../../productSlice";
+} from "../../../../../../createSlices/productSlice";
 
 function AddEdit(props) {
   const { productId } = useParams();
@@ -29,7 +29,7 @@ function AddEdit(props) {
       dispatch(apiUpdateProduct(value));
     }
     setTimeout(() => {
-      history.push("/products");
+      history.push("/admin/products");
     }, 1000);
   };
   useEffect(() => {

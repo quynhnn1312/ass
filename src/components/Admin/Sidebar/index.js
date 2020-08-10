@@ -59,6 +59,18 @@ function Sidebar(props) {
         label="Category"
         icon="fa fa-bars"
       />
+      <OldSchoolMenuLink
+        activeOnlyWhenExact={true}
+        to="/admin/blogs"
+        label="Blog"
+        icon="fa fa-fw fa-table"
+      />
+      <OldSchoolMenuLink
+        activeOnlyWhenExact={true}
+        to="/admin/transactions"
+        label="Transction"
+        icon="fa fa-shopping-cart"
+      />
       <hr className="sidebar-divider d-none d-md-block" />
     </ul>
   );

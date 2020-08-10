@@ -35,6 +35,7 @@ function CategoryList(props) {
     >
       <thead>
         <tr>
+          <th>STT</th>
           <th>ID</th>
           <th>Name</th>
           <th>Status</th>
@@ -44,6 +45,7 @@ function CategoryList(props) {
       <tbody>
         {categories.map((category, index) => (
           <tr key={index}>
+            <td>{index + 1}</td>
             <td>{category.id}</td>
             <td>{category.name}</td>
             <td>
@@ -55,21 +57,25 @@ function CategoryList(props) {
                 {category.status ? "active" : "private"}
               </span>
             </td>
-            <td>
-              <button
-                className="btn btn-info"
-                onClick={() => onUpdateClick(category)}
-              >
-                Edit
-              </button>{" "}
-              &nbsp;
-              <button
-                className="btn btn-danger"
-                onClick={() => onHandleRemove(category)}
-              >
-                Remove
-              </button>
-            </td>
+            {category.id != 1 ? (
+              <td>
+                <button
+                  className="btn btn-info"
+                  onClick={() => onUpdateClick(category)}
+                >
+                  Edit
+                </button>{" "}
+                &nbsp;
+                <button
+                  className="btn btn-danger"
+                  onClick={() => onHandleRemove(category)}
+                >
+                  Remove
+                </button>
+              </td>
+            ) : (
+              ""
+            )}
           </tr>
         ))}
       </tbody>

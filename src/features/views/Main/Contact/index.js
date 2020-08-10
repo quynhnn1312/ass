@@ -6,7 +6,7 @@ import Breadcrumb from "../../../../components/Main/Breadcrumb";
 function Contact(props) {
   return (
     <div className="contact-page">
-      <Breadcrumb />
+      <Breadcrumb title="Contact" />
       <main id="content" className="main-content-wrapper page-about">
         {/* Start of Contact Section */}
         <section className="contact-section">

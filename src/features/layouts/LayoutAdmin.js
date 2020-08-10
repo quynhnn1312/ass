@@ -19,7 +19,6 @@ export default ({ children }) => {
         <div id="content">
           <Header />
           {children}
-          {/* <button className={styles.btnAdmin}>Buttn Admin </button> */}
         </div>
         <Footer />
       </div>

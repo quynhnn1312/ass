@@ -18,18 +18,22 @@ import NotFoundMain from "./components/Main/NotFoundMain/index";
 const Dashboard = React.lazy(() => import("./features/views/Admin/Dashboard"));
 const Product = React.lazy(() => import("./features/views/Admin/Product"));
 const Category = React.lazy(() => import("./features/views/Admin/Category"));
+const Transaction = React.lazy(() => import("./features/views/Admin/Transaction"));
+const BlogAdmin = React.lazy(() => import("./features/views/Admin/Blog"));
 
 // Main
 const Home = React.lazy(() => import("./features/views/Main/Home"));
 const Shop = React.lazy(() => import("./features/views/Main/Shop"));
 const Cart = React.lazy(() => import("./features/views/Main/Cart"));
 const Blog = React.lazy(() => import("./features/views/Main/Blog"));
+const BlogDetail = React.lazy(() => import("./features/views/Main/BlogDetail"));
 const About = React.lazy(() => import("./features/views/Main/About"));
 const Contact = React.lazy(() => import("./features/views/Main/Contact"));
 const Register = React.lazy(() => import("./features/views/Main/Register"));
 const Login = React.lazy(() => import("./features/views/Main/Login"));
 const Checkout = React.lazy(() => import("./features/views/Main/Checkout"));
 const SingleProduct = React.lazy(() => import("./features/views/Main/SingleProduct"));
+const Thankyou = React.lazy(() => import("./features/views/Main/Thankyou"));
 
 function App() {
   return (
@@ -49,6 +53,7 @@ function App() {
       >
         <Router>
           <Switch>
+            <Route path="/thanh-you" component={Thankyou} />
             <Route path="/admin/:path?">
               <LayoutAdmin>
                 <Switch>
@@ -57,6 +62,8 @@ function App() {
                   <Route path="/admin/dashboard" component={Dashboard} />
                   <Route path="/admin/products" component={Product} />
                   <Route path="/admin/categories" component={Category} />
+                  <Route path="/admin/transactions" component={Transaction} />
+                  <Route path="/admin/blogs" component={BlogAdmin} />
                   <Route component={NotFound} />
                 </Switch>
               </LayoutAdmin>
@@ -66,9 +73,11 @@ function App() {
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <Route path="/shops" component={Shop} />
-                  <Route path="/single-product" component={SingleProduct} />
+                  <Route path="/shop/:id" exact component={Shop} />
+                  <Route path="/shop/:idCate/single-product/:idPro" component={SingleProduct} />
                   <Route path="/carts" component={Cart} />
                   <Route path="/blogs" component={Blog} />
+                  <Route path="/blog/:id" component={BlogDetail} />
                   <Route path="/about" component={About} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/register" component={Register} />

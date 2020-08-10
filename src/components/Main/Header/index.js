@@ -1,9 +1,55 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import {NavLink, Link} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  apiCategoryList,
+  selectCategory,
+} from "../../../createSlices/categorySlice";
+import { deleteCart } from "../../../createSlices/cartSlice";
 
 function Header(props) {
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategory);
+  const carts = useSelector((state) => state.carts);
+  useEffect(() => {
+    dispatch(apiCategoryList());
+  }, []);
+  const showCart = () => {
+    var element = document.getElementById("cart-small-header");
+    element.classList.contains("open")
+      ? element.classList.remove("open")
+      : element.classList.add("open");
+  };
+
+  const showSetting = () => {
+    var element = document.getElementById("setting-small-header");
+    element.classList.contains("open")
+      ? element.classList.remove("open")
+      : element.classList.add("open");
+  };
+
+  var totalCart = 0;
+  if (carts) {
+    for (let i = 0; i < carts.length; i++) {
+      if (carts[i].product.discount > 0) {
+        totalCart +=
+          ((100 - carts[i].product.discount) / 100) *
+          carts[i].product.price *
+          carts[i].quantity;
+      } else {
+        totalCart += carts[i].product.price * carts[i].quantity;
+      }
+    }
+  }
+
+  const onRemoveCart = (e, cart) => {
+    e.preventDefault();
+    dispatch(deleteCart(cart));
+  };
+
   return (
     <header className="header bgc-white header-type-1">
       <div className="header-area">
@@ -42,95 +88,115 @@ function Header(props) {
               <div className="header-cart-area">
                 <div className="header-cart">
                   <div className="btn-group">
-                    <button className="btn-link dropdown-toggle icon-cart">
+                    <button
+                      className="btn-link dropdown-toggle icon-cart"
+                      onClick={showCart}
+                    >
                       <i className="pe-7s-shopbag" />
-                      <span className="count-style">2</span>
+                      <span className="count-style">{carts.length}</span>
                     </button>
-                    <div className="dropdown-menu">
-                      <div className="shopping-cart-content">
-                        <ul className="list-unstyled">
-                          <li className="single-cart-item media">
-                            <div className="shopping-cart-img mr-4">
-                              <a href="/">
-                                <img
-                                  className="img-fluid"
-                                  alt="Cart Item"
-                                  src="/main/images/cart/cart-1.jpg"
-                                />
-                                <span className="product-quantity">1x</span>
-                              </a>
-                            </div>
-                            <div className="shopping-cart-title media-body">
-                              <h4>
-                                <a href="/">Rival Field Messenger</a>
-                              </h4>
-                              <p className="cart-price">$120.00</p>
-                              <div className="product-attr">
-                                <span>Size: S</span>
-                                <span>Color: Black</span>
-                              </div>
-                            </div>
-                            <div className="shopping-cart-delete">
-                              <a href="/">
-                                <i className="ion ion-md-close" />
-                              </a>
-                            </div>
-                          </li>
-                          <li className="single-cart-item media">
-                            <div className="shopping-cart-img mr-4">
-                              <a href="/">
-                                <img
-                                  className="img-fluid"
-                                  alt="Cart Item"
-                                  src="/main/images/cart/cart-2.jpg"
-                                />
-                                <span className="product-quantity">2x</span>
-                              </a>
-                            </div>
-                            <div className="shopping-cart-title media-body">
-                              <h4>
-                                <a href="/">Fusion Backpack</a>
-                              </h4>
-                              <p className="cart-price">$200.00</p>
-                              <div className="product-attr">
-                                <span>Color: White</span>
-                                <span>Accessories: Yes</span>
-                              </div>
-                            </div>
-                            <div className="shopping-cart-delete">
-                              <a href="/">
-                                <i className="ion ion-md-close" />
-                              </a>
-                            </div>
-                          </li>
-                        </ul>
-                        <div className="shopping-cart-total">
-                          <h4>
-                            Sub-Total : <span>$320.00</span>
-                          </h4>
-                          <h4>
-                            Total : <span>$320.00</span>
-                          </h4>
+                    <div id="cart-small-header" className="dropdown-menu">
+                      {carts.length > 0 ? (
+                        <div className="shopping-cart-content">
+                          <ul className="list-unstyled">
+                            {carts.map((cart, index) => (
+                              <li
+                                key={index}
+                                className="single-cart-item media"
+                              >
+                                <div className="shopping-cart-img mr-4">
+                                  <Link
+                                    to={`/shop/${cart.product.categoryId}/single-product/${cart.product.id}`}
+                                  >
+                                    <img
+                                      className="img-fluid"
+                                      alt={cart.product.name}
+                                      src={cart.product.avatar}
+                                    />
+                                    <span className="product-quantity">
+                                      {cart.quantity}x
+                                    </span>
+                                  </Link>
+                                </div>
+                                <div className="shopping-cart-title media-body">
+                                  <h4>
+                                    <Link
+                                      to={`/shop/${cart.product.categoryId}/single-product/${cart.product.id}`}
+                                    >
+                                      {cart.product.name}
+                                    </Link>
+                                  </h4>
+                                  <p className="cart-price">
+                                    $
+                                    {cart.product.discount > 0
+                                      ? ((100 - cart.product.discount) / 100) *
+                                        cart.product.price
+                                      : cart.product.price}
+                                  </p>
+                                  <div className="product-attr">
+                                    <span>Size: S</span>
+                                    <span>Color: Black</span>
+                                  </div>
+                                </div>
+                                <div className="shopping-cart-delete">
+                                  <a
+                                    href="/"
+                                    onClick={(e) => onRemoveCart(e, cart)}
+                                  >
+                                    <i className="ion ion-md-close" />
+                                  </a>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="shopping-cart-total">
+                            <h4>
+                              Sub-Total : <span>${totalCart}</span>
+                            </h4>
+                            <h4>
+                              Total : <span>${totalCart} </span>
+                            </h4>
+                          </div>
+                          <div className="shopping-cart-btn">
+                            <Link className="default-btn" to="/carts">
+                              view cart
+                            </Link>
+                            <Link className="default-btn" to="/checkout">
+                              checkout
+                            </Link>
+                          </div>
                         </div>
-                        <div className="shopping-cart-btn">
-                          <Link className="default-btn" to="/carts">
-                            view cart
-                          </Link>
-                          <Link className="default-btn" to="/checkout">
-                            checkout
-                          </Link>
+                      ) : (
+                        <div className="shopping-cart-content cart-small-header">
+                          <div
+                            className="no-cart"
+                            style={{ margin: "30px auto" }}
+                          >
+                            <div className="text-center">
+                              <img
+                                width="70%"
+                                src="/main/images/empty_cart4fcc.png"
+                              />
+                              <br />
+                              <br />
+                              <p>Không có sản phẩm nào</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
                 <ul className="list-inline">
                   <li className="top-links list-inline-item">
                     <div className="btn-group">
-                      <button className="btn-link dropdown-toggle">
+                      <button
+                        className="btn-link dropdown-toggle"
+                        onClick={showSetting}
+                      >
                         <i className="pe-7s-config" />
                       </button>
-                      <div className="dropdown-menu">
+                      <div className="dropdown-menu" id="setting-small-header">
                         <ul>
                           <li>
                             <Link to="/register">Register</Link>
@@ -163,57 +229,56 @@ function Header(props) {
           <nav id="main_nav" className="stellarnav">
             <ul className="mb-0">
               <li>
-                <NavLink
-                    exact
-                    to="/"
-                    activeClassName="header__link--active"
-                  >
-                    Home
+                <NavLink exact to="/" activeClassName="header__link--active">
+                  Home
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                    exact
-                    to="/shops"
-                    activeClassName="header__link--active"
-                  >
-                    Shop &nbsp;
+                  exact
+                  to="/shops"
+                  activeClassName="header__link--active"
+                >
+                  Shop &nbsp;
                   <i className="fa fa-angle-down"></i>
                 </NavLink>
                 <ul>
-                  <li>
-                    <a href="/">FAQs Page</a>
-                  </li>
-                  <li>
-                    <a href="/">404 Page</a>
-                  </li>
+                  {categories.map((category, index) =>
+                    category.id != 1 ? (
+                      <li key={index}>
+                        <Link to={`/shop/${category.id}`}>{category.name}</Link>
+                      </li>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </ul>
               </li>
               <li>
                 <NavLink
-                    exact
-                    to="/blogs"
-                    activeClassName="header__link--active"
-                  >
-                    Blog
+                  exact
+                  to="/blogs"
+                  activeClassName="header__link--active"
+                >
+                  Blog
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                    exact
-                    to="/about"
-                    activeClassName="header__link--active"
-                  >
-                    About Us
+                  exact
+                  to="/about"
+                  activeClassName="header__link--active"
+                >
+                  About Us
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                    exact
-                    to="/contact"
-                    activeClassName="header__link--active"
-                  >
-                    Contact Us
+                  exact
+                  to="/contact"
+                  activeClassName="header__link--active"
+                >
+                  Contact Us
                 </NavLink>
               </li>
             </ul>
